@@ -17,14 +17,15 @@ os.environ["pubsub_uuid"] = "marialina-pc"
 
 pnconfig = PNConfiguration()
 
+os.environ["pubsub_pub"] = "pub-c-04250ae0-dda0-42b0-98ba-741650176bb7"
+os.environ["pubsub_sub"] = "sub-c-2dff428c-9b94-4da1-9816-66229f3315cd"
+
+pnconfig.publish_key = os.getenv("pubsub_pub")
+pnconfig.subscribe_key = os.getenv("pubsub_sub")
+
 pnconfig.uuid = os.environ["pubsub_uuid"]
 
-os.environ["pubsub_uuid"] = "pub-c-04250ae0-dda0-42b0-98ba-741650176bb7"
-os.environ["pubsub_uuid"] = "sub-c-2dff428c-9b94-4da1-9816-66229f3315cd"
-
-
 pubnub = PubNub(pnconfig)
-
 
 class RecebeMensagem(SubscribeCallback):
     def presence(self, pubnub, event):
